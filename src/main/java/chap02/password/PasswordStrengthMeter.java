@@ -6,15 +6,12 @@ public class PasswordStrengthMeter {
     public PasswordStrengthMeter() {
     }
 
-    public PasswordStrength meter(String s) throws Exception {
+    public PasswordStrength meter(String s) {
 
-        try {
-            int metCounts = getMetCriteriaCounts(s);
-            if (metCounts <= 1) return PasswordStrength.WEAK;
-            if (metCounts == 2) return PasswordStrength.NORMAL;
-        } catch (NullPointerException e) {
-            return PasswordStrength.INVALID;
-        }
+        if (s == null || s.equals("")) return PasswordStrength.INVALID;
+        int metCounts = getMetCriteriaCounts(s);
+        if (metCounts <= 1) return PasswordStrength.WEAK;
+        if (metCounts == 2) return PasswordStrength.NORMAL;
         return PasswordStrength.STRONG;
     }
 
